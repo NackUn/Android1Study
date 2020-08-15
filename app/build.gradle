@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.starmk95.navermovieapi"
+        minSdkVersion 26
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // retrofit 의존성 추가
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    // 결과를 원하는 객체로 변환하여 받기 위한 gson converter 라이브러리 등록
+    // gson은 json 구조를 띄는 직렬화된 데이터를 자바의 객체로 역질렬화, 직렬화해주는 자바 라이브러리
+    // 즉, JSON 객체를 JAVA 객체로 만들어주거나 반대의 방향으로 만들어주는 라이브러리이다.
+    /* 네트워크 통신 시, XML 또는 JSON 등 서버 개발자와 협의된 방식의 데이터 포맷으로 데이터를 주고받는다.
+       결과 값으로 받은 데이터 타입을 실제 프로그램에서 사용하기 위해 데이터 파싱이 필요하다.
+       일반적으로 자바에서는 pro 또는 vo 등으로 불리는 데이터 클래스를 선언하여 데이터를 파싱하고
+       파싱된 데이터를 구조에 맞게 작성된 해당 데이터 클래스에 저장한다.
+       이러한 작업들을 자동으로 수행해주는 것이 retrofit의 converter이다.
+     */
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+
+}
