@@ -16,14 +16,12 @@ class NetworkHelper {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
     private var movieApi = retrofit.create(MovieAPI::class.java)
-    private val CLIENT_ID = "Z6OHzyRe_5anc4FWCoq2"
-    private val CLIENT_SECRET = "pSumWoEXFY"
 
     fun requestMovie(
         keyword: String,
         setTextView: (ArrayList<MovieDetail>) -> Unit
     ) {
-        movieApi.getMovieList(CLIENT_ID, CLIENT_SECRET, "movie.json", keyword)
+        movieApi.getMovieList(keyword)
             .enqueue(object : Callback<ResponseBody> {
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     println("실패 : $t")
