@@ -2,7 +2,7 @@ package com.khb.searchmovie
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.khb.searchmovie.model.MovieDetail
+import com.khb.searchmovie.model.MovieEntity
 import kotlinx.android.synthetic.main.activity_movie.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -11,7 +11,7 @@ import java.lang.StringBuilder
 
 class MovieActivity : AppCompatActivity() {
     private var networkHelper = NetworkHelper()
-    private lateinit var setTextView: (ArrayList<MovieDetail>) -> Unit
+    private lateinit var setTextView: (ArrayList<MovieEntity>) -> Unit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +23,7 @@ class MovieActivity : AppCompatActivity() {
         setTextView = { items ->
             var sb = StringBuilder()
             items.map {
-                sb.append("영화 이름 : ${it.title}\n" +
-                        "영화 감독 : ${it.director}\n" +
-                        "출연 배우 : ${it.actor}\n\n")
+                sb.append("영화 이름 : ${it.title}\n")
             }
             resultTextView.text = sb.toString()
         }
